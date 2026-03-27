@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Quiz Learn & Earn | Premium Educational Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app-container">
+        
+        <!-- Auth Section: Register -->
+        <div id="page-register" class="animate-in hidden">
+            <h1 class="title-gradient text-center mt-20">Create account</h1>
+            <p class="text-muted text-center mt-10">Start your journey to Learn & Earn</p>
+            
+            <div class="card mt-20">
+                <form id="register-form">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="reg-username" placeholder="e.g. topper_alex" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile Number (Mock OTP)</label>
+                        <input type="tel" id="reg-mobile" placeholder="10 digit mobile number" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" id="reg-age" placeholder="Your age" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Class</label>
+                        <select id="reg-class" required>
+                            <option value="">Select Class</option>
+                            <option value="6">Class 6</option>
+                            <option value="7">Class 7</option>
+                            <option value="8">Class 8</option>
+                            <option value="9">Class 9</option>
+                            <option value="10">Class 10</option>
+                            <option value="11">Class 11</option>
+                            <option value="12">Class 12</option>
+                            <option value="Dropper">Dropper</option>
+                            <option value="College">College</option>
+                        </select>
+                    </div>
+
+                    <!-- Conditional Fields for Class 9/10/11/12 -->
+                    <div id="conditional-fields" class="hidden animate-in">
+                        <div class="form-group">
+                            <label>Board</label>
+                            <select id="reg-board">
+                                <option value="CBSE">CBSE</option>
+                                <option value="ICSE">ICSE</option>
+                                <option value="State Board">State Board</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Medium</label>
+                            <select id="reg-medium">
+                                <option value="English">English</option>
+                                <option value="Hindi">Hindi</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Exam Preparation Type</label>
+                        <select id="reg-exam" required>
+                            <option value="JEE">JEE</option>
+                            <option value="NEET">NEET</option>
+                            <option value="UPSC">UPSC</option>
+                            <option value="SSC">SSC</option>
+                            <option value="BPSC">BPSC</option>
+                            <option value="Board Exams">Board Exams</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-10">Sign Up & Get 100 Coins</button>
+                    <p class="text-muted text-center mt-20" style="font-size: 0.9rem;">
+                        Already have an account? <a href="#" onclick="showPage('page-login')" style="color: var(--primary);">Login</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Auth Section: Login -->
+        <div id="page-login" class="animate-in">
+            <h1 class="title-gradient text-center mt-20">Welcome Back</h1>
+            <p class="text-muted text-center mt-10">Login to your workspace</p>
+            
+            <div class="card mt-20">
+                <form id="login-form">
+                    <div class="form-group">
+                        <label>Mobile Number</label>
+                        <input type="tel" id="login-mobile" placeholder="Contact number" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-10">Login</button>
+                    <p class="text-muted text-center mt-20" style="font-size: 0.9rem;">
+                        New here? <a href="#" onclick="showPage('page-register')" style="color: var(--primary);">Create account</a>
+                    </p>
+                    <button type="button" class="btn btn-secondary mt-10" onclick="showPage('page-admin-login')">Admin Dashboard</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="page-dashboard" class="animate-in hidden">
+            <header class="quiz-header">
+                <div>
+                    <h2 id="dash-greeting">Hi, Learner! 👋</h2>
+                    <p class="text-muted" style="font-size: 0.85rem;">Learn, Compete & Earn</p>
+                </div>
+                <div class="stat-card" style="padding: 10px 15px;">
+                    <span class="stat-value" id="dash-coins" style="font-size: 1.1rem; color: var(--accent);">
+                        <i class="fa-solid fa-coins"></i> 100
+                    </span>
+                    <p class="stat-label">Coins</p>
+                </div>
+            </header>
+
+            <div class="card" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));">
+                <h3>Live Quiz at 8 PM</h3>
+                <p class="text-muted mt-10">Join thousands of students and win bumper coins!</p>
+                <div class="btn btn-accent mt-20" style="width: auto; padding: 10px 20px;">Remind Me</div>
+            </div>
+
+            <h4 class="mt-20 mb-10">Your Stats</h4>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <p class="stat-label">Attempted</p>
+                    <p class="stat-value" id="stat-attempts">0</p>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-label">Accuracy</p>
+                    <p class="stat-value" id="stat-accuracy">0%</p>
+                </div>
+            </div>
+
+            <h4 class="mt-20 mb-10">Ready to start?</h4>
+            <div class="btn btn-primary mt-10" id="btn-daily-quiz">
+                <i class="fa-solid fa-bolt"></i> Daily Quiz
+            </div>
+            <div class="btn btn-accent mt-10" id="btn-premium-quiz">
+                <i class="fa-solid fa-crown"></i> Premium Quiz (Cost: 5 Coins)
+            </div>
+
+            <h4 class="mt-20 mb-10">Recommended for You</h4>
+            <div id="recommendations-container">
+                <!-- Dynamically filled -->
+                <div class="card" style="padding: 15px; background: var(--glass); margin-bottom: 10px;">
+                    <p>Physics JEE Mock Quiz</p>
+                </div>
+            </div>
+
+            <div class="mt-20 text-center">
+                <button class="btn btn-secondary" onclick="logout()">Logout</button>
+            </div>
+
+            <div class="nav-bottom">
+                <a href="#" class="nav-item active" onclick="showDashboard()">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+                <a href="#" class="nav-item" onclick="showLeaderboard()">
+                    <i class="fa-solid fa-ranking-star"></i> Rank
+                </a>
+                <a href="#" class="nav-item" id="btn-refer">
+                    <i class="fa-solid fa-users"></i> Refer
+                </a>
+                <a href="#" class="nav-item" onclick="showAdminPanel()">
+                    <i class="fa-solid fa-user-shield"></i> Admin
+                </a>
+            </div>
+        </div>
+
+        <!-- Quiz Interface Section -->
+        <div id="page-quiz" class="animate-in hidden">
+            <header class="quiz-header">
+                <div id="quiz-category-label" style="font-weight: 600;">JEE QUIZ</div>
+                <div id="timer-label" style="color: var(--accent); font-weight: 700;">
+                    <i class="fa-regular fa-clock"></i> <span id="time-left">15</span>s
+                </div>
+            </header>
+
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="quiz-progress" style="width: 10%;"></div>
+            </div>
+
+            <div id="question-container">
+                <h3 id="question-text" class="mb-20">Loading question...</h3>
+                <div id="options-container">
+                    <!-- Options buttons will be injected here -->
+                </div>
+            </div>
+            
+            <p class="text-muted mt-20 text-center" id="q-counter">Question 1 of 10</p>
+        </div>
+
+        <!-- Result Section -->
+        <div id="page-result" class="animate-in hidden">
+            <div class="text-center mt-20">
+                <h1 id="result-title">Amazing! 🏆</h1>
+                <p class="text-muted" id="result-subtitle">Quiz Completed successfully</p>
+            </div>
+
+            <div class="card mt-20 text-center">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <p class="stat-label">Your Score</p>
+                        <p class="stat-value" id="result-score">0/10</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Coins Earned</p>
+                        <p class="stat-value" id="result-coins">+20</p>
+                    </div>
+                </div>
+                <p class="mt-20 title-gradient" style="font-size: 1.2rem; font-weight: 700;">Your Rank: #<span id="result-rank">12</span></p>
+            </div>
+
+            <button class="btn btn-primary mt-10" id="btn-share-result">
+                <i class="fa-solid fa-share-nodes"></i> Share Result
+            </button>
+            <button class="btn btn-secondary mt-10" onclick="showDashboard()">Back to Home</button>
+        </div>
+
+        <!-- Leaderboard Section -->
+        <div id="page-leaderboard" class="animate-in hidden">
+            <h2 class="title-gradient text-center mt-20">Top Legends</h2>
+            <p class="text-muted text-center">Compete with the best</p>
+
+            <div class="card mt-20" id="leaderboard-list" style="padding: 10px;">
+                <!-- List of users -->
+                <div class="loader"></div>
+            </div>
+
+            <button class="btn btn-secondary mt-10" onclick="showDashboard()">Back to Home</button>
+        </div>
+
+        <!-- Admin Login Section -->
+        <div id="page-admin-login" class="animate-in hidden">
+            <h2 class="title-gradient text-center mt-20">Admin Access</h2>
+            <div class="card mt-20">
+                <form id="admin-login-form">
+                    <div class="form-group">
+                        <label>Admin Username</label>
+                        <input type="text" id="admin-user" placeholder="admin" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="admin-pass" placeholder="admin123" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-10">Login to Dashboard</button>
+                    <button type="button" class="btn btn-secondary mt-10" onclick="showPage('page-login')">Back to User Login</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Admin Panel Section -->
+        <div id="page-admin-panel" class="animate-in hidden">
+            <h2 class="title-gradient text-center mt-20">Admin Controls</h2>
+            
+            <div class="mt-20">
+                <button class="btn btn-accent" id="btn-ai-generate">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> AI Question Generator
+                </button>
+            </div>
+
+            <div class="card mt-20">
+                <h3>Add Question</h3>
+                <form id="add-question-form" class="mt-10">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="q-category">
+                            <option value="JEE">JEE</option>
+                            <option value="NEET">NEET</option>
+                            <option value="UPSC">UPSC</option>
+                            <option value="SSC">SSC</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Question Text</label>
+                        <textarea id="q-text" style="width:100%; height:80px; background:var(--glass); border:1px solid var(--border); border-radius:12px; color:white; padding:10px;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Option 1 (Correct)</label>
+                        <input type="text" id="q-opt1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Option 2</label>
+                        <input type="text" id="q-opt2" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Option 3</label>
+                        <input type="text" id="q-opt3" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Option 4</label>
+                        <input type="text" id="q-opt4" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Question</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h3>System Users</h3>
+                <div id="admin-users-list" class="mt-10">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+
+            <button class="btn btn-secondary mt-10" onclick="logoutAdmin()">Logout Admin</button>
+        </div>
+
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
